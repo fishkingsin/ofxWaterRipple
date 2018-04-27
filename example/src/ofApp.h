@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxWaterRipple.h"
-
+#include "ofxGui.h"
 class ofApp : public ofBaseApp{
 
 	public:
@@ -22,4 +22,7 @@ class ofApp : public ofBaseApp{
 		
 
 		ofxWaterRipple agua;
+        ofxFloatSlider damping;
+        ofxPanel gui;
+    ofVideoPlayer player;
 };

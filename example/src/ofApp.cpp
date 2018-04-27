@@ -4,10 +4,26 @@
 void ofApp::setup(){
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	agua.setup(1024, 768);
+    gui.setup(); // most of the time you don't need a name
+    gui.add(damping.setup("damping", 0.999, 0.99, 0.9999999));
+    player.load("video.mp4");
+    player.setLoopState(OF_LOOP_NORMAL);
+    player.play();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    player.update();
+    ofImage image;
+    ofPixels pixel;
+    pixel.allocate(player.getWidth(), player.getHeight(), OF_IMAGE_COLOR);
+    pixel.setFromPixels(player.getPixels().getData(), player.getWidth(), player.getHeight(), OF_IMAGE_COLOR);
+    pixel.resize(agua.gpuCompute.getWidth(), agua.gpuCompute.getHeight());
+
+    agua.gpuCompute.tex.loadData(pixel);
+    
+    agua.pDamping = damping;
 	agua.update();
 	ofSetWindowTitle( ofToString(ofGetFrameRate()) + " FPS" );
 }
@@ -16,7 +32,8 @@ void ofApp::update(){
 void ofApp::draw(){
 	ofBackground(0);
 	ofSetColor(255);
-	agua.draw(true);
+	agua.draw(false);
+    gui.draw();
 }
 
 //--------------------------------------------------------------

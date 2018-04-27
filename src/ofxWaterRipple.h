@@ -30,14 +30,14 @@ class ofxWaterRipple {
 		void	siguienteFoto();										//Pasa a la siguiente foto de la lista
 
 		float	pDamping;			//Factor de damping
+        GpuCompute gpuCompute;
 
 
 protected:
 
 		int SquaredDist(int sx, int sy, int dx, int dy);
 
-		GpuCompute gpuCompute;
-
+		
 		int _height;
 		int _width;
 		

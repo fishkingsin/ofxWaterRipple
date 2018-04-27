@@ -92,7 +92,7 @@ void GpuCompute::draw()
 		
 		ofVec2f r(width, height);
 		drawShader.setUniform2fv("resolution", r.getPtr());
-		drawShader.setUniformTexture("tex", tex,2);
+        drawShader.setUniformTexture("tex", tex,2);
 		drawShader.setUniform1f("damping",20);
 
 		texturedQuad();
